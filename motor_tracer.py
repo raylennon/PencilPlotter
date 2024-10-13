@@ -3,7 +3,7 @@ from scipy.optimize import least_squares
 # import eel
 import time
 from sys import platform
-kit, steppers= None
+kit, steppers = [None]*2
 if platform == 'linux':
     from adafruit_motorkit import MotorKit
     from adafruit_motor import stepper
