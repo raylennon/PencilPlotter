@@ -2,8 +2,15 @@ import numpy as np
 from scipy.optimize import least_squares
 # import eel
 import time
-# Initialize the eel library
-# eel.init('web')
+from sys import platform
+kit, steppers= None
+if platform == 'linux':
+    from adafruit_motorkit import MotorKit
+    from adafruit_motor import stepper
+    
+    kit = MotorKit()
+    dirs = [stepper.FORWARD, stepper.BACKWARD]
+    steppers = [kit.stepper1, kit.stepper2]
 
 t = 0
 
@@ -56,6 +63,17 @@ while True:
     
     print(f"Rotate A by {180/np.pi * (a1-current_a1):.2f}°\t={motor1_steps} steps")
     print(f"Rotate B by {180/np.pi * (a2-current_a2):.2f}°\t={motor2_steps} steps")
+
+    if platform == 'linux':
+        for i in range(max(abs(motor1_steps), abs(motor2_steps))):
+            if abs(motor1_steps)>0:
+                kit.stepper1.onestep(style=stepper.DOUBLE, direction = dirs[motor1_steps<0])
+                motor1_steps -= 1 *np.sign(motor1_steps)
+            if abs(motor2_steps)>0:
+                kit.stepper2.onestep(style=stepper.DOUBLE, direction = dirs[motor2_steps<0])
+                motor2_steps -= 1 *np.sign(motor2_steps)
+            time.sleep(0.1)
+
 
 
     current_a1 = a1
