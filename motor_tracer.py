@@ -72,7 +72,7 @@ while True:
             if abs(motor2_steps)>0:
                 kit.stepper2.onestep(style=stepper.DOUBLE, direction = dirs[motor2_steps<0])
                 motor2_steps -= 1 *np.sign(motor2_steps)
-            time.sleep(0.1)
+            time.sleep(0.01)
 
 
 
