@@ -54,8 +54,8 @@ while True:
     print(posy)
 
     t += 10
-    posx = 20 * np.cos(t * np.pi/180) 
-    posy = 20 * np.sin(t * np.pi/180) + 200
+    posx = 30 * np.cos(t * np.pi/180) 
+    posy = 30 * np.sin(t * np.pi/180) + 200
     a1, a2 = get_rotation_angle()
 
     motor1_steps = int((a1-current_a1)*(100/np.pi))
