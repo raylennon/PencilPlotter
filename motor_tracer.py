@@ -1,9 +1,9 @@
 import numpy as np
 from scipy.optimize import least_squares
-import eel
+# import eel
 import time
 # Initialize the eel library
-eel.init('web')
+# eel.init('web')
 
 t = 0
 
