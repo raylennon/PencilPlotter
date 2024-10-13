@@ -39,9 +39,12 @@ moved_from_start = False
 while True:
 
     if not moved_from_start:
-        current_a1 = least_squares(find_cosa1, -0.2,  bounds=(-1, 0)).x[0]
-        current_a2 = least_squares(find_cosa1, -0.2,  bounds=(-1, 0)).x[0]
+        current_a1 = np.arccos(least_squares(find_cosa1, -0.2,  bounds=(-1, 0)).x[0])
+        current_a2 = np.arccos(least_squares(find_cosa2, 0.2,  bounds=(0, 1)).x[0])
         moved_from_start = True
+
+    print(posx)
+    print(posy)
 
     t += 10
     posx = 30 * np.cos(t * np.pi/180) 
@@ -53,6 +56,7 @@ while True:
     
     print(f"Rotate A by {180/np.pi * (a1-current_a1):.2f}°\t={motor1_steps} steps")
     print(f"Rotate B by {180/np.pi * (a2-current_a2):.2f}°\t={motor2_steps} steps")
+
 
     current_a1 = a1
     current_a2 = a2
