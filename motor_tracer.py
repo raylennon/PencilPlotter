@@ -42,7 +42,7 @@ def get_rotation_angle():
     return a1, a2
 
 moved_from_start = False
-
+inc = -10
 while True:
 
     if not moved_from_start:
@@ -52,8 +52,9 @@ while True:
 
     print(posx)
     print(posy)
-
-    t += 10
+    if (t>1000):
+        inc *= -1
+    t += inc
     posx = 30 * np.cos(t * np.pi/180) 
     posy = 30 * np.sin(t * np.pi/180) + 200
     a1, a2 = get_rotation_angle()

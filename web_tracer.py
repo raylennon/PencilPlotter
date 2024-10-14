@@ -39,10 +39,8 @@ def get_rotation_angle():
     a1 = round(a1 * 200/(2*np.pi))*2*np.pi/200
     a2 = round(a2 * 200/(2*np.pi))*2*np.pi/200
 
-
     a3 = np.arctan2(posy- UPPER_LENGTH*np.sin(a1), posx - (UPPER_LENGTH*np.cos(a1)-BASE_SEPARATION/2))
     a4 = np.arctan2(posy- UPPER_LENGTH*np.sin(a2), posx - (UPPER_LENGTH*np.cos(a2)+BASE_SEPARATION/2))
-    
     
     # print(f"Time: {time}\ta1: {a1}\ta2: {a2}")
     print(f"Time: {time}\tcos(a2): {cos_a2}")
