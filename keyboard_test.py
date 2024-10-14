@@ -3,13 +3,13 @@ from scipy.optimize import least_squares
 # import eel
 import time
 from sys import platform
+from adafruit_motorkit import MotorKit
+from adafruit_motor import stepper
 
 kit = MotorKit()
 dirs = [stepper.FORWARD, stepper.BACKWARD]
 steppers = [kit.stepper1, kit.stepper2]
 
-from adafruit_motorkit import MotorKit
-from adafruit_motor import stepper
 
 
 while True:
