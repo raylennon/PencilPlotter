@@ -52,8 +52,6 @@ while True:
 
     print(posx)
     print(posy)
-    if (t>10000):
-        inc *= -1
     t += inc
     posx = 30 * np.cos(t * np.pi/180) 
     posy = 30 * np.sin(t * np.pi/180) + 200
@@ -62,8 +60,8 @@ while True:
     motor1_steps = int((a1-current_a1)*(100/np.pi))
     motor2_steps = int((a2-current_a2)*(100/np.pi))
     
-    print(f"Rotate A by {180/np.pi * (a1-current_a1):.2f}°\t={motor1_steps} steps")
-    print(f"Rotate B by {180/np.pi * (a2-current_a2):.2f}°\t={motor2_steps} steps")
+    # print(f"Rotate A by {180/np.pi * (a1-current_a1):.2f}°\t={motor1_steps} steps")
+    # print(f"Rotate B by {180/np.pi * (a2-current_a2):.2f}°\t={motor2_steps} steps")
 
     if platform == 'linux':
         for i in range(max(abs(motor1_steps), abs(motor2_steps))):
@@ -80,5 +78,5 @@ while True:
     current_a1 = a1
     current_a2 = a2
 
-    time.sleep(0.4)
+    time.sleep(0.1)
 
