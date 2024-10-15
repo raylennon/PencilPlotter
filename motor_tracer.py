@@ -24,7 +24,7 @@ posy = 190
 find_cosa1 = lambda x : (posx-(UPPER_LENGTH*x-BASE_SEPARATION/2))**2 + (posy-UPPER_LENGTH*np.sqrt(1-x**2))**2 - FOREARM_LENGTH**2
 find_cosa2 = lambda x : (posx-(UPPER_LENGTH*x+BASE_SEPARATION/2))**2 + (posy-UPPER_LENGTH*np.sqrt(1-x**2))**2 - FOREARM_LENGTH**2
 
-fac= 200
+fac= 400
 
 # Expose the function to get the current angle
 def get_rotation_angle():
@@ -58,8 +58,8 @@ while True:
     posy = 30 * np.sin(t * np.pi/180) + 200
     a1, a2 = get_rotation_angle()
 
-    motor1_steps = int((a1-current_a1)*(100/np.pi))
-    motor2_steps = int((a2-current_a2)*(100/np.pi))
+    motor1_steps = int((a1-current_a1)*(fac/(2*np.pi)))
+    motor2_steps = int((a2-current_a2)*(fac/(2*np.pi)))
     
     # print(f"Rotate A by {180/np.pi * (a1-current_a1):.2f}°\t={motor1_steps} steps")
     # print(f"Rotate B by {180/np.pi * (a2-current_a2):.2f}°\t={motor2_steps} steps")
