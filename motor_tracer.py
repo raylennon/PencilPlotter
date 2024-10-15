@@ -24,6 +24,7 @@ posy = 190
 find_cosa1 = lambda x : (posx-(UPPER_LENGTH*x-BASE_SEPARATION/2))**2 + (posy-UPPER_LENGTH*np.sqrt(1-x**2))**2 - FOREARM_LENGTH**2
 find_cosa2 = lambda x : (posx-(UPPER_LENGTH*x+BASE_SEPARATION/2))**2 + (posy-UPPER_LENGTH*np.sqrt(1-x**2))**2 - FOREARM_LENGTH**2
 
+fac= 400
 
 # Expose the function to get the current angle
 def get_rotation_angle():
@@ -33,8 +34,8 @@ def get_rotation_angle():
     cos_a2 = least_squares(find_cosa2, 0.2,  bounds=(0, 1)).x[0]
     a2 = np.arccos(cos_a2)
 
-    a1 = round(a1 * 200/(2*np.pi))*2*np.pi/200
-    a2 = round(a2 * 200/(2*np.pi))*2*np.pi/200
+    a1 = round(a1 * fac/(2*np.pi))*2*np.pi/fac
+    a2 = round(a2 * fac/(2*np.pi))*2*np.pi/fac
 
     a3 = np.arctan2(posy- UPPER_LENGTH*np.sin(a1), posx - (UPPER_LENGTH*np.cos(a1)-BASE_SEPARATION/2))
     a4 = np.arctan2(posy- UPPER_LENGTH*np.sin(a2), posx - (UPPER_LENGTH*np.cos(a2)+BASE_SEPARATION/2))
@@ -50,8 +51,8 @@ while True:
         current_a2 = np.arccos(least_squares(find_cosa2, 0.2,  bounds=(0, 1)).x[0])
         moved_from_start = True
 
-    print(posx)
-    print(posy)
+    # print(posx)
+    # print(posy)
     t += inc
     posx = 30 * np.cos(t * np.pi/180) 
     posy = 30 * np.sin(t * np.pi/180) + 200
@@ -62,14 +63,19 @@ while True:
     
     # print(f"Rotate A by {180/np.pi * (a1-current_a1):.2f}°\t={motor1_steps} steps")
     # print(f"Rotate B by {180/np.pi * (a2-current_a2):.2f}°\t={motor2_steps} steps")
+    style_val = stepper.DOUBLE
+    if (fac == 200):
+        style_val = stepper.DOUBLE
+    if (fac == 400):
+        style_val = stepper.SINGLE
 
     if platform == 'linux':
         for i in range(max(abs(motor1_steps), abs(motor2_steps))):
             if abs(motor1_steps)>0:
-                print(kit.stepper1.onestep(style=stepper.DOUBLE, direction = dirs[motor1_steps<0]))
+                print(kit.stepper1.onestep(style=style_val, direction = dirs[motor1_steps<0]))
                 motor1_steps -= 1 *np.sign(motor1_steps)
             if abs(motor2_steps)>0:
-                print(f"\t{kit.stepper2.onestep(style=stepper.DOUBLE, direction = dirs[motor2_steps<0])}")
+                print(f"\t{kit.stepper2.onestep(style=style_val, direction = dirs[motor2_steps<0])}")
                 motor2_steps -= 1 *np.sign(motor2_steps)
             time.sleep(0.01)
 
