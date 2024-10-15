@@ -80,5 +80,5 @@ while True:
     current_a1 = a1
     current_a2 = a2
 
-    time.sleep(0.01)
+    time.sleep(0.4)
 
