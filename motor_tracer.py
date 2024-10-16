@@ -72,6 +72,9 @@ while True:
     if (fac == 400):
         style_val = stepper.SINGLE
 
+    current_a1 += motor1_steps * (2*np.pi/fac)
+    current_a2 += motor2_steps * (2*np.pi/fac)
+    
     if platform == 'linux':
         for i in range(max(abs(motor1_steps), abs(motor2_steps))):
             if abs(motor1_steps)>0:
@@ -84,8 +87,6 @@ while True:
 
 
 
-    current_a1 -= motor1_steps * (2*np.pi/fac)
-    current_a2 += motor2_steps * (2*np.pi/fac)
 
     time.sleep(0.1)
 
