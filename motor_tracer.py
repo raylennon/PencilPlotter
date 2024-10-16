@@ -75,10 +75,10 @@ while True:
     if platform == 'linux':
         for i in range(max(abs(motor1_steps), abs(motor2_steps))):
             if abs(motor1_steps)>0:
-                # print(kit.stepper1.onestep(style=style_val, direction = dirs[motor1_steps<0]))
+                kit.stepper1.onestep(style=style_val, direction = dirs[motor1_steps<0])
                 motor1_steps -= 1 *np.sign(motor1_steps)
             if abs(motor2_steps)>0:
-                # print(f"\t{kit.stepper2.onestep(style=style_val, direction = dirs[motor2_steps<0])}")
+                f"\t{kit.stepper2.onestep(style=style_val, direction = dirs[motor2_steps<0])}"
                 motor2_steps -= 1 *np.sign(motor2_steps)
             time.sleep(0.01)
 
