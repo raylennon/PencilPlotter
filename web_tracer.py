@@ -25,9 +25,9 @@ current_a2 = np.pi/2
 def get_rotation_angle():
     global time, posx, posy, current_a1, current_a2
     time += 4
-
-    posx = 30 * np.cos(time * np.pi/180) 
-    posy = 30 * np.sin(time * np.pi/180) + 200
+    r = 0.5*(np.sin(0.001 * time) + 2.0)
+    posx = 30 * r * np.cos(time * np.pi/180) 
+    posy = 30 * r * np.sin(time * np.pi/180) + 200
 
     # posx  = 0
     # posy = 100
