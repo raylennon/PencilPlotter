@@ -84,7 +84,7 @@ while True:
 
 
 
-    current_a1 += motor1_steps * (2*np.pi/fac)
+    current_a1 -= motor1_steps * (2*np.pi/fac)
     current_a2 += motor2_steps * (2*np.pi/fac)
 
     time.sleep(0.1)
