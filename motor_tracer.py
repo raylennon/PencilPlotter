@@ -74,7 +74,7 @@ while True:
 
     current_a1 += motor1_steps * (2*np.pi/fac)
     current_a2 += motor2_steps * (2*np.pi/fac)
-    
+
     if platform == 'linux':
         for i in range(max(abs(motor1_steps), abs(motor2_steps))):
             if abs(motor1_steps)>0:
@@ -83,7 +83,7 @@ while True:
             if abs(motor2_steps)>0:
                 f"\t{kit.stepper2.onestep(style=style_val, direction = dirs[motor2_steps<0])}"
                 motor2_steps -= 1 *np.sign(motor2_steps)
-            time.sleep(0.01)
+            time.sleep(0.05)
 
 
 
