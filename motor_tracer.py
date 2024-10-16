@@ -29,16 +29,18 @@ fac= 200
 # Expose the function to get the current angle
 def get_rotation_angle():
     global posx, posy
+    
     cos_a1 = least_squares(find_cosa1, -0.2,  bounds=(-1, 0)).x[0]
     a1 = np.arccos(cos_a1)
+    
     cos_a2 = least_squares(find_cosa2, 0.2,  bounds=(0, 1)).x[0]
     a2 = np.arccos(cos_a2)
 
-    a1 = round(a1 * fac/(2*np.pi))*2*np.pi/fac
-    a2 = round(a2 * fac/(2*np.pi))*2*np.pi/fac
+    # a1 = round(a1 * fac/(2*np.pi))*2*np.pi/fac
+    # a2 = round(a2 * fac/(2*np.pi))*2*np.pi/fac
 
-    a3 = np.arctan2(posy- UPPER_LENGTH*np.sin(a1), posx - (UPPER_LENGTH*np.cos(a1)-BASE_SEPARATION/2))
-    a4 = np.arctan2(posy- UPPER_LENGTH*np.sin(a2), posx - (UPPER_LENGTH*np.cos(a2)+BASE_SEPARATION/2))
+    #a3 = np.arctan2(posy- UPPER_LENGTH*np.sin(a1), posx - (UPPER_LENGTH*np.cos(a1)-BASE_SEPARATION/2))
+    #a4 = np.arctan2(posy- UPPER_LENGTH*np.sin(a2), posx - (UPPER_LENGTH*np.cos(a2)+BASE_SEPARATION/2))
     
     return a1, a2
 
@@ -51,15 +53,16 @@ while True:
         current_a2 = np.arccos(least_squares(find_cosa2, 0.2,  bounds=(0, 1)).x[0])
         moved_from_start = True
 
-    # print(posx)
-    # print(posy)
     t += inc
     posx = 30 * np.cos(t * np.pi/180) 
     posy = 30 * np.sin(t * np.pi/180) + 200
     a1, a2 = get_rotation_angle()
 
-    motor1_steps = int((a1-current_a1)*(fac/(2*np.pi)))
-    motor2_steps = int((a2-current_a2)*(fac/(2*np.pi)))
+    motor1_steps = round((a1-current_a1) * fac/(2*np.pi))*2*np.pi/fac
+    motor2_steps = round((a2-current_a2) * fac/(2*np.pi))*2*np.pi/fac
+
+    # motor1_steps = int((a1-current_a1)*(fac/(2*np.pi)))
+    # motor2_steps = int((a2-current_a2)*(fac/(2*np.pi)))
     
     # print(f"Rotate A by {180/np.pi * (a1-current_a1):.2f}°\t={motor1_steps} steps")
     # print(f"Rotate B by {180/np.pi * (a2-current_a2):.2f}°\t={motor2_steps} steps")
