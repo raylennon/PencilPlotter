@@ -58,8 +58,8 @@ while True:
     posy = 30 * np.sin(t * np.pi/180) + 200
     a1, a2 = get_rotation_angle()
 
-    motor1_steps = round((a1-current_a1) * fac/(2*np.pi))*2*np.pi/fac
-    motor2_steps = round((a2-current_a2) * fac/(2*np.pi))*2*np.pi/fac
+    motor1_steps = round((a1-current_a1) * fac/(2*np.pi))
+    motor2_steps = round((a2-current_a2) * fac/(2*np.pi))
 
     # motor1_steps = int((a1-current_a1)*(fac/(2*np.pi)))
     # motor2_steps = int((a2-current_a2)*(fac/(2*np.pi)))
