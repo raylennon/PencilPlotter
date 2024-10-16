@@ -24,7 +24,7 @@ posy = 190
 find_cosa1 = lambda x : (posx-(UPPER_LENGTH*x-BASE_SEPARATION/2))**2 + (posy-UPPER_LENGTH*np.sqrt(1-x**2))**2 - FOREARM_LENGTH**2
 find_cosa2 = lambda x : (posx-(UPPER_LENGTH*x+BASE_SEPARATION/2))**2 + (posy-UPPER_LENGTH*np.sqrt(1-x**2))**2 - FOREARM_LENGTH**2
 
-fac= 400
+fac= 200
 
 # Expose the function to get the current angle
 def get_rotation_angle():
@@ -66,7 +66,8 @@ while True:
 
     style_val = stepper.DOUBLE
     if (fac == 200):
-        style_val = stepper.DOUBLE
+        style_val = stepper.SINGLE
+        # style_val = stepper.DOUBLE
     if (fac == 400):
         style_val = stepper.SINGLE
 
