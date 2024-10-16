@@ -24,7 +24,7 @@ posy = 190
 find_cosa1 = lambda x : (posx-(UPPER_LENGTH*x-BASE_SEPARATION/2))**2 + (posy-UPPER_LENGTH*np.sqrt(1-x**2))**2 - FOREARM_LENGTH**2
 find_cosa2 = lambda x : (posx-(UPPER_LENGTH*x+BASE_SEPARATION/2))**2 + (posy-UPPER_LENGTH*np.sqrt(1-x**2))**2 - FOREARM_LENGTH**2
 
-fac= 200
+fac= 400
 
 # Expose the function to get the current angle
 def get_rotation_angle():
@@ -36,12 +36,6 @@ def get_rotation_angle():
     cos_a2 = least_squares(find_cosa2, 0.2,  bounds=(0, 1)).x[0]
     a2 = np.arccos(cos_a2)
 
-    # a1 = round(a1 * fac/(2*np.pi))*2*np.pi/fac
-    # a2 = round(a2 * fac/(2*np.pi))*2*np.pi/fac
-
-    #a3 = np.arctan2(posy- UPPER_LENGTH*np.sin(a1), posx - (UPPER_LENGTH*np.cos(a1)-BASE_SEPARATION/2))
-    #a4 = np.arctan2(posy- UPPER_LENGTH*np.sin(a2), posx - (UPPER_LENGTH*np.cos(a2)+BASE_SEPARATION/2))
-    
     return a1, a2
 
 moved_from_start = False
