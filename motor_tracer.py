@@ -48,8 +48,8 @@ while True:
         moved_from_start = True
 
     t += inc
-    posx = 40 * np.cos(t * np.pi/180) 
-    posy = 40 * np.sin(t * np.pi/180) + 200
+    posx = 10 * np.cos(t * np.pi/180) 
+    posy = 10 * np.sin(t * np.pi/180) + 200
     a1, a2 = get_rotation_angle()
 
     motor1_steps = round((a1-current_a1) * fac/(2*np.pi))
