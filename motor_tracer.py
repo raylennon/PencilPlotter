@@ -15,8 +15,8 @@ if platform == 'linux':
 t = 0
 
 BASE_SEPARATION = 120
-UPPER_LENGTH = 142.5
-FOREARM_LENGTH = 140
+UPPER_LENGTH = 137.5
+FOREARM_LENGTH = 135
 
 posx = 0
 posy = 190
