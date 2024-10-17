@@ -43,8 +43,10 @@ inc = 1
 while True:
 
     if not moved_from_start:
-        current_a1 = np.arccos(least_squares(find_cosa1, -0.2,  bounds=(-1, 0)).x[0])
-        current_a2 = np.arccos(least_squares(find_cosa2, 0.2,  bounds=(0, 1)).x[0])
+        # current_a1 = np.arccos(least_squares(find_cosa1, -0.2,  bounds=(-1, 0)).x[0])
+        # current_a2 = np.arccos(least_squares(find_cosa2, 0.2,  bounds=(0, 1)).x[0])
+        current_a1 = -np.pi/2
+        current_a2 = np.pi/2
         moved_from_start = True
 
     t += inc
