@@ -47,8 +47,7 @@ while True:
         # current_a2 = np.arccos(least_squares(find_cosa2, 0.2,  bounds=(0, 1)).x[0])
         current_a1 = np.pi/2
         current_a2 = np.pi/2
-        print(current_a1)
-        print(current_a2)
+
         moved_from_start = True
 
     t += inc
@@ -58,7 +57,7 @@ while True:
     posx = 20 * r * np.cos(t * np.pi/180) 
     posy = 20 * r * np.sin(t * np.pi/180) + 200
     a1, a2 = get_rotation_angle()
-
+    print(f"From {current_a1*(180/np.pi):.2f},{current_a2*(180/np.pi):.2f} to {a1*(180/np.pi):.2f},{a2*(180/np.pi):.2f}")
     motor1_steps = round((a1-current_a1) * fac/(2*np.pi))
     motor2_steps = round((a2-current_a2) * fac/(2*np.pi))
     if (max(abs(motor1_steps), abs(motor2_steps)))==0:
