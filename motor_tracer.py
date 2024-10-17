@@ -33,7 +33,7 @@ def get_rotation_angle():
     cos_a1 = least_squares(find_cosa1, -0.2,  bounds=(-1, 0)).x[0]
     a1 = np.arccos(cos_a1)
     
-    cos_a2 = -least_squares(find_cosa2, 0.2,  bounds=(0, 1)).x[0]
+    cos_a2 = least_squares(find_cosa2, 0.2,  bounds=(0, 1)).x[0]
     a2 = np.arccos(cos_a2)
 
     return a1, a2
@@ -84,7 +84,7 @@ while True:
                 motor1_steps -= 1 *np.sign(motor1_steps)
             if abs(motor2_steps)>0:
                 kit.stepper2.onestep(style=style_val, direction = dirs[motor2_steps<0])
-                motor2_steps -= 1 *np.sign(motor2_steps)
+                motor2_steps += 1 *np.sign(motor2_steps)
             time.sleep(0.005)
 
     time.sleep(0.005)
