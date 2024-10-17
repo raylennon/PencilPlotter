@@ -8,8 +8,9 @@ eel.init('web')
 time = 0
 
 BASE_SEPARATION = 120
-UPPER_LENGTH = 142.5
-FOREARM_LENGTH = 140
+UPPER_LENGTH = 137.5
+FOREARM_LENGTH = 135
+
 
 posx = 0
 posy = 150
@@ -24,11 +25,11 @@ current_a2 = np.pi/2
 @eel.expose
 def get_rotation_angle():
     global time, posx, posy, current_a1, current_a2
-    time += 4
+    time += 0.1
     # r = 0.5*(np.sin(0.001 * time) + 2.0)
     r = 1
-    posx = 30 * r * np.cos(time * np.pi/180) 
-    posy = 30 * r * np.sin(time * np.pi/180) + 200
+    posx = 20 * r * np.cos(time * np.pi/180) 
+    posy = 20 * r * np.sin(time * np.pi/180) + 200
 
     # posx  = 0
     # posy = 100

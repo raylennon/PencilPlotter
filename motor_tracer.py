@@ -59,7 +59,7 @@ while True:
     a1, a2 = get_rotation_angle()
     print(f"From {current_a1*(180/np.pi):.2f},{current_a2*(180/np.pi):.2f} to {a1*(180/np.pi):.2f},{a2*(180/np.pi):.2f}")
     motor1_steps = round((a1-current_a1) * fac/(2*np.pi))
-    motor2_steps = round((a2-current_a2) * fac/(2*np.pi))
+    motor2_steps = -round((a2-current_a2) * fac/(2*np.pi))
     if (max(abs(motor1_steps), abs(motor2_steps)))==0:
         continue
     # motor1_steps = int((a1-current_a1)*(fac/(2*np.pi)))
