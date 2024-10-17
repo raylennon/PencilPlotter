@@ -43,10 +43,12 @@ inc = 1
 while True:
 
     if not moved_from_start:
-        # current_a1 = np.arccos(least_squares(find_cosa1, -0.2,  bounds=(-1, 0)).x[0])
-        # current_a2 = np.arccos(least_squares(find_cosa2, 0.2,  bounds=(0, 1)).x[0])
-        current_a1 = -np.pi/2
-        current_a2 = np.pi/2
+        current_a1 = np.arccos(least_squares(find_cosa1, -0.2,  bounds=(-1, 0)).x[0])
+        current_a2 = np.arccos(least_squares(find_cosa2, 0.2,  bounds=(0, 1)).x[0])
+        print(current_a1)
+        print(current_a2)
+        # current_a1 = -np.pi/2
+        # current_a2 = np.pi/2
         moved_from_start = True
 
     t += inc
@@ -75,14 +77,14 @@ while True:
 
     current_a1 += motor1_steps * (2*np.pi/fac)
     current_a2 += motor2_steps * (2*np.pi/fac)
-    print(f"\t{(t )%360}")
+    # print(f"\t{(t )%360}")
     if platform == 'linux':
         for i in range(max(abs(motor1_steps), abs(motor2_steps))):
             if abs(motor1_steps)>0:
-                print(kit.stepper1.onestep(style=style_val, direction = dirs[motor1_steps<0]))
+                kit.stepper1.onestep(style=style_val, direction = dirs[motor1_steps<0])
                 motor1_steps -= 1 *np.sign(motor1_steps)
             if abs(motor2_steps)>0:
-                print(kit.stepper2.onestep(style=style_val, direction = dirs[motor2_steps<0]))
+                kit.stepper2.onestep(style=style_val, direction = dirs[motor2_steps<0])
                 motor2_steps -= 1 *np.sign(motor2_steps)
             time.sleep(0.01)
 
