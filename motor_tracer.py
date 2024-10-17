@@ -33,7 +33,7 @@ def get_rotation_angle():
     cos_a1 = least_squares(find_cosa1, -0.2,  bounds=(-1, 0)).x[0]
     a1 = np.arccos(cos_a1)
     
-    cos_a2 = least_squares(find_cosa2, 0.2,  bounds=(0, 1)).x[0]
+    cos_a2 = -least_squares(find_cosa2, 0.2,  bounds=(0, 1)).x[0]
     a2 = np.arccos(cos_a2)
 
     return a1, a2
@@ -59,7 +59,7 @@ while True:
     a1, a2 = get_rotation_angle()
     print(f"From {current_a1*(180/np.pi):.2f},{current_a2*(180/np.pi):.2f} to {a1*(180/np.pi):.2f},{a2*(180/np.pi):.2f}")
     motor1_steps = round((a1-current_a1) * fac/(2*np.pi))
-    motor2_steps = -round((a2-current_a2) * fac/(2*np.pi))
+    motor2_steps = round((a2-current_a2) * fac/(2*np.pi))
     if (max(abs(motor1_steps), abs(motor2_steps)))==0:
         continue
     # motor1_steps = int((a1-current_a1)*(fac/(2*np.pi)))
