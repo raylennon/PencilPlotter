@@ -24,7 +24,7 @@ posy = 190
 find_cosa1 = lambda x : (posx-(UPPER_LENGTH*x-BASE_SEPARATION/2))**2 + (posy-UPPER_LENGTH*np.sqrt(1-x**2))**2 - FOREARM_LENGTH**2
 find_cosa2 = lambda x : (posx-(UPPER_LENGTH*x+BASE_SEPARATION/2))**2 + (posy-UPPER_LENGTH*np.sqrt(1-x**2))**2 - FOREARM_LENGTH**2
 
-fac= 200
+fac= 200 * 16
 
 # Expose the function to get the current angle
 def get_rotation_angle():
@@ -39,7 +39,7 @@ def get_rotation_angle():
     return a1, a2
 
 moved_from_start = False
-inc = 10
+inc = 1
 while True:
 
     if not moved_from_start:
@@ -49,7 +49,8 @@ while True:
 
     t += inc
 
-    r = 0.9*(np.sin(0.001 * t) + 1.0)
+    # r = 0.9*(np.sin(0.001 * t) + 1.0)
+    r = 1
     posx = 20 * r * np.cos(t * np.pi/180) 
     posy = 20 * r * np.sin(t * np.pi/180) + 200
     a1, a2 = get_rotation_angle()
@@ -64,12 +65,11 @@ while True:
     # print(f"Rotate A by {180/np.pi * (a1-current_a1):.2f}°\t={motor1_steps} steps")
     # print(f"Rotate B by {180/np.pi * (a2-current_a2):.2f}°\t={motor2_steps} steps\n")
 
-    style_val = stepper.DOUBLE
-    if (fac == 200):
+    if (fac <= 200):
         style_val = stepper.SINGLE
         # style_val = stepper.DOUBLE
-    if (fac == 400):
-        style_val = stepper.SINGLE
+    else :
+        style_val = stepper.MICROSTEP
 
     current_a1 += motor1_steps * (2*np.pi/fac)
     current_a2 += motor2_steps * (2*np.pi/fac)
