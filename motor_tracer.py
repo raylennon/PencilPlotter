@@ -39,7 +39,7 @@ def get_rotation_angle():
     return a1, a2
 
 moved_from_start = False
-inc = 5
+inc = 1
 while True:
 
     if not moved_from_start:
