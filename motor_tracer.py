@@ -8,7 +8,7 @@ if platform == 'linux':
     from adafruit_motorkit import MotorKit
     from adafruit_motor import stepper
     
-    kit = MotorKit(steppers_microsteps=16, pwm_frequency=25e3)
+    kit = MotorKit(steppers_microsteps=16, pwm_frequency=1e3)
     dirs = [stepper.FORWARD, stepper.BACKWARD]
     steppers = [kit.stepper1, kit.stepper2]
 
